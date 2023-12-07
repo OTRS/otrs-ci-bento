@@ -5,6 +5,10 @@ distro="`rpm -qf --queryformat '%{NAME}' /etc/redhat-release | cut -f 1 -d '-'`"
 
 major_version="`sed 's/^.\+ release \([.0-9]\+\).*/\1/' /etc/redhat-release | awk -F. '{print $1}'`";
 
+# on EL 8+ use rescue boot entry
+if [ "$major_version" -ge 8 ]; then
+    `ls /boot/loader/entries/* | grep -v rescue | xargs rm`
+fi
 
 echo "reduce the grub menu time to 1 second"
 if ! [ "$major_version" -eq 6 ]; then
