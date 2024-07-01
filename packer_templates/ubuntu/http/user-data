@@ -6,8 +6,7 @@ autoinstall:
     username: vagrant
     # Generated via: printf vagrant | mkpasswd -m sha-512 -R 4096 -s
     password: '$6$rounds=4096$WCLWOvFce4W6O2rI$bmzzJZlqqDcXFW8EOH8olGsBM1n2QxQsSrRf4x3ehZov1czuf5G67GIocQae0H3UqMh49bqNm1fFC.9qlmU6b.'
-  early-commands:
-    # otherwise packer tries to connect and exceed max attempts:
-    - systemctl stop ssh
   ssh:
     install-server: true
+    allow-pw: true
+    authorized-keys: []
