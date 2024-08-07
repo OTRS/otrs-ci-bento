@@ -13,15 +13,16 @@ virtualbox-iso|virtualbox-ovf)
     # determine the major EL version we're runninng
     major_version="`sed 's/^.\+ release \([.0-9]\+\).*/\1/' /etc/redhat-release | awk -F. '{print $1}'`";
 
-    if [ "$major_version" -ge 8 ]; then
-        nmcli networking off
-        sleep 5
-        nmcli networking on
-    else
-        service network restart;
+    if [ "$major_version" -lt 9 ]; then
+        if [ "$major_version" -eq 8 ]; then
+            nmcli networking off
+            sleep 5
+            nmcli networking on
+        else
+            service network restart;
+        fi
+
+        echo 'Slow DNS fix applied (single-request-reopen)';
     fi
-
-    echo 'Slow DNS fix applied (single-request-reopen)';
     ;;
-
 esac
