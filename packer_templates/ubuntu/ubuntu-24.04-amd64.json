@@ -1,8 +1,6 @@
 {
     "builders": [
         {
-            "cd_files": ["./http/*"],
-            "cd_label": "cidata",
             "boot_command": [
                 " <wait>",
                 " <wait>",
@@ -14,9 +12,9 @@
                 "set gfxpayload=keep",
                 "<enter><wait>",
                 "linux /casper/vmlinuz",
-                " quiet<wait>",
                 " autoinstall<wait>",
-                " 'ds=nocloud;'<wait>",
+                " quiet<wait>",
+                " ds=nocloud-net\\;s=http://{{.HTTPIP}}:{{.HTTPPort}}/<wait>",
                 " ---",
                 "<enter><wait>",
                 "initrd /casper/initrd<wait>",

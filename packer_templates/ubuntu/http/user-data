@@ -10,3 +10,8 @@ autoinstall:
     install-server: true
     allow-pw: true
     authorized-keys: []
+  storage:
+    # https://canonical-subiquity.readthedocs-hosted.com/en/latest/reference/autoinstall-reference.html#sizing-policy
+    layout:
+      name: lvm
+      sizing-policy: all
