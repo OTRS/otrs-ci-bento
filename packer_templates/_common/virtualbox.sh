@@ -15,9 +15,7 @@ virtualbox-iso|virtualbox-ovf)
     echo "installing deps necessary to compile kernel modules"
     # We install things like kernel-headers here vs. kickstart files so we make sure we install them for the updated kernel not the stock kernel
     if [ -f "/bin/dnf" ]; then
-        echo "installing packages using dnf"
         dnf install -y --skip-broken perl cpp gcc make bzip2 tar kernel-headers kernel-devel libX11 libXt libXext libXmu || true # not all these packages are on every system
-        echo "done installing packages using dnf"
     elif [ -f "/bin/yum" ] || [ -f "/usr/bin/yum" ]; then
         yum install -y --skip-broken perl cpp gcc make bzip2 tar kernel-headers kernel-devel libX11 libXt libXext libXmu || true # not all these packages are on every system
     elif [ -f "/usr/bin/apt-get" ]; then
