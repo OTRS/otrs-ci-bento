@@ -25,7 +25,6 @@ fi
 
 
 echo "Remove development and kernel source packages"
-$pkg_cmd -y remove gcc cpp gc kernel-devel kernel-headers glibc-devel elfutils-libelf-devel glibc-headers kernel-devel kernel-headers
 
 if [ "$major_version" -ge 8 ]; then
   echo "remove orphaned packages"
