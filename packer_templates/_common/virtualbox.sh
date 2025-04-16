@@ -24,7 +24,9 @@ case "$PACKER_BUILDER_TYPE" in
     if [ -f "/bin/dnf" ]; then
         set +e
         (
-            set -e
+            set -eux
+            free -m
+            df -h
             dnf clean all
             dnf makecache
             dnf install --disableplugin="*" -v -d 6 -y --skip-broken perl cpp gcc make bzip2 tar kernel-headers kernel-devel libX11 libXt libXext libXmu < /dev/null # not all these packages are on every system
