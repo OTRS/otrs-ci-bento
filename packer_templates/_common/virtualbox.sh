@@ -1,27 +1,37 @@
 #!/bin/sh -eux
 
 # set a default HOME_DIR environment variable if not set
-HOME_DIR="${HOME_DIR:-/home/vagrant}";
+HOME_DIR="${HOME_DIR:-/home/vagrant}"
 
 case "$PACKER_BUILDER_TYPE" in
-virtualbox-iso|virtualbox-ovf)
-    VER="`cat $HOME_DIR/.vbox_version`";
-    ISO="VBoxGuestAdditions_$VER.iso";
+  virtualbox-iso|virtualbox-ovf)
+    VER="`cat $HOME_DIR/.vbox_version`"
+    ISO="VBoxGuestAdditions_$VER.iso"
 
     # mount the ISO to /tmp/vbox
-    mkdir -p /tmp/vbox;
-    mount -o loop $HOME_DIR/$ISO /tmp/vbox;
+    mkdir -p /tmp/vbox || {
+        echo "could not create /tmp/vbox"
+        exit 1
+    }
+    mount -o loop $HOME_DIR/$ISO /tmp/vbox && {
+        echo "could not mount $HOME_DIR/$ISO on /tmp/vbox"
+        exit 1
+    }
 
     echo "installing deps necessary to compile kernel modules"
     # We install things like kernel-headers here vs. kickstart files so we make sure we install them for the updated kernel not the stock kernel
     if [ -f "/bin/dnf" ]; then
         dnf install -y --skip-broken perl cpp gcc make bzip2 tar kernel-headers kernel-devel libX11 libXt libXext libXmu || true # not all these packages are on every system
+        echo "installed deps necessary to compile kernel modules using dnf"
     elif [ -f "/bin/yum" ] || [ -f "/usr/bin/yum" ]; then
         yum install -y --skip-broken perl cpp gcc make bzip2 tar kernel-headers kernel-devel libX11 libXt libXext libXmu || true # not all these packages are on every system
+        echo "installed deps necessary to compile kernel modules using yum"
     elif [ -f "/usr/bin/apt-get" ]; then
         apt-get install -y build-essential dkms bzip2 tar linux-headers-`uname -r` libxt6 libxmu6
+        echo "installed deps necessary to compile kernel modules using apt-get"
     elif [ -f "/usr/bin/zypper" ]; then
         zypper install -y perl cpp gcc make bzip2 tar kernel-default-devel
+        echo "installed deps necessary to compile kernel modules using zypper"
     fi
 
     echo "installing the vbox additions"
@@ -34,9 +44,9 @@ virtualbox-iso|virtualbox-ovf)
     fi
 
     echo "unmounting and removing the vbox ISO"
-    umount /tmp/vbox;
-    rm -rf /tmp/vbox;
-    rm -f $HOME_DIR/*.iso;
+    umount /tmp/vbox
+    rm -rf /tmp/vbox
+    rm -f $HOME_DIR/*.iso
 
     echo "removing kernel dev packages and compilers we no longer need"
     if [ -f "/bin/dnf" ]; then
@@ -51,5 +61,5 @@ virtualbox-iso|virtualbox-ovf)
 
     echo "removing leftover logs"
     rm -rf /var/log/vboxadd*
-    ;;
+  ;;
 esac
