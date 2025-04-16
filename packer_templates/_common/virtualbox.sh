@@ -14,7 +14,7 @@ case "$PACKER_BUILDER_TYPE" in
         exit 1
     }
     mount -o loop $HOME_DIR/$ISO /tmp/vbox || true
-    test -f /tmp/vbox/VBoxLinuxAdditions.run && {
+    test -f /tmp/vbox/VBoxLinuxAdditions.run || {
         echo "could not mount $HOME_DIR/$ISO on /tmp/vbox"
         exit 1
     }
