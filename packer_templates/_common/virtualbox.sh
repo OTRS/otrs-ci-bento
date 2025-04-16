@@ -23,7 +23,10 @@ case "$PACKER_BUILDER_TYPE" in
     # We install things like kernel-headers here vs. kickstart files so we make sure we install them for the updated kernel not the stock kernel
     if [ -f "/bin/dnf" ]; then
         set +e
-        dnf install -v -y --skip-broken perl cpp gcc make bzip2 tar kernel-headers kernel-devel libX11 libXt libXext libXmu || true # not all these packages are on every system
+        (
+            set -e
+            dnf install -v -d -y --skip-broken perl cpp gcc make bzip2 tar kernel-headers kernel-devel libX11 libXt libXext libXmu # not all these packages are on every system
+        )
         DNF_EXIT=$?
         set -e
         if [ "$DNF_EXIT" -ne 0 ]; then
