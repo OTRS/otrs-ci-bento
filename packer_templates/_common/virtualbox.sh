@@ -25,7 +25,7 @@ case "$PACKER_BUILDER_TYPE" in
         set +e
         (
             set -e
-            dnf install -v -d 2 -y --skip-broken perl cpp gcc make bzip2 tar kernel-headers kernel-devel libX11 libXt libXext libXmu # not all these packages are on every system
+            dnf install -v -d 5 -y --skip-broken perl cpp gcc make bzip2 tar kernel-headers kernel-devel libX11 libXt libXext libXmu # not all these packages are on every system
         )
         DNF_EXIT=$?
         set -e
