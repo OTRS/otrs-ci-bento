@@ -22,8 +22,15 @@ case "$PACKER_BUILDER_TYPE" in
     echo "installing deps necessary to compile kernel modules"
     # We install things like kernel-headers here vs. kickstart files so we make sure we install them for the updated kernel not the stock kernel
     if [ -f "/bin/dnf" ]; then
-        dnf install -y --skip-broken perl cpp gcc make bzip2 tar kernel-headers kernel-devel libX11 libXt libXext libXmu || true # not all these packages are on every system
-        echo "installed deps necessary to compile kernel modules using dnf"
+        set +e
+        dnf install -v -y --skip-broken perl cpp gcc make bzip2 tar kernel-headers kernel-devel libX11 libXt libXext libXmu || true # not all these packages are on every system
+        DNF_EXIT=$?
+        set -e
+        if [ "$DNF_EXIT" -ne 0 ]; then
+            echo "dnf exited with code $DNF_EXIT — continuing anyway"
+        else
+            echo "installed deps necessary to compile kernel modules using dnf"
+        fi
     elif [ -f "/bin/yum" ] || [ -f "/usr/bin/yum" ]; then
         yum install -y --skip-broken perl cpp gcc make bzip2 tar kernel-headers kernel-devel libX11 libXt libXext libXmu || true # not all these packages are on every system
         echo "installed deps necessary to compile kernel modules using yum"
