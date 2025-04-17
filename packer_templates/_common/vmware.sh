@@ -1,12 +1,5 @@
 #!/bin/sh -eux
 
-# Debug output.
-echo "###"
-tail -n20 /var/log/dnf.log
-echo "###"
-dmesg | tail -n20
-echo "###"
-
 # set a default HOME_DIR environment variable if not set
 HOME_DIR="${HOME_DIR:-/home/vagrant}";
 
