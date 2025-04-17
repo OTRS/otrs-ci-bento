@@ -22,7 +22,9 @@ case "$PACKER_BUILDER_TYPE" in
     echo "installing deps necessary to compile kernel modules"
     # We install things like kernel-headers here vs. kickstart files so we make sure we install them for the updated kernel not the stock kernel
     if [ -f "/bin/dnf" ]; then
+        date
         dnf install -y -v -v perl cpp gcc make bzip2 tar kernel-headers kernel-devel libX11 libXt libXext libXmu # not all these packages are on every system
+        date
         DNF_EXIT=$?
         if [ "$DNF_EXIT" -ne 0 ]; then
             echo "dnf exited with code $DNF_EXIT — continuing anyway"
