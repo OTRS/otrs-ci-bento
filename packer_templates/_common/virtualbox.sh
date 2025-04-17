@@ -28,7 +28,7 @@ case "$PACKER_BUILDER_TYPE" in
             free -m
             df -h
             dnf clean all
-            dnf install --disableplugin="*" -v -d 6 -y --skip-broken perl cpp gcc make bzip2 tar kernel-headers kernel-devel libX11 libXt libXext libXmu < /dev/null # not all these packages are on every system
+            dnf install --disableplugin="*" -v -d 9 -y --skip-broken perl cpp gcc make bzip2 tar kernel-headers kernel-devel libX11 libXt libXext libXmu < /dev/null # not all these packages are on every system
         )
         DNF_EXIT=$?
         set -e
