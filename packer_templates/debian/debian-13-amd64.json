@@ -147,7 +147,7 @@
     "mirror_directory": "current/amd64/iso-cd",
     "name": "debian-13",
     "no_proxy": "{{env `no_proxy`}}",
-    "preseed_path": "debian-9/preseed.cfg",
+    "preseed_path": "debian-13/preseed.cfg",
     "qemu_display": "none",
     "qemu_bios": "bios-256k.bin",
     "template": "debian-13-amd64",
