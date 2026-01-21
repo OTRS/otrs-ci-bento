@@ -180,7 +180,7 @@
     }
   ],
   "variables": {
-    "box_basename": "almalinux-8.7",
+    "box_basename": "almalinux-8.10",
     "build_directory": "../../builds",
     "build_timestamp": "{{isotime \"202205111847\"}}",
     "cpus": "2",
@@ -194,15 +194,15 @@
     "hyperv_generation": "1",
     "hyperv_switch": "bento",
     "iso_checksum": "c14fae79d5e26bc41e75f0a65063ab684199a7ea3a6bd0a8086e1ffd2a7afac8",
-    "iso_name": "AlmaLinux-8.7-aarch64-dvd.iso",
+    "iso_name": "AlmaLinux-8.10-aarch64-dvd.iso",
     "ks_path": "8/ks.cfg",
     "memory": "1024",
     "mirror": "https://repo.almalinux.org/almalinux",
-    "mirror_directory": "8.7/isos/aarch64",
-    "name": "almalinux-8.7",
+    "mirror_directory": "8.10/isos/aarch64",
+    "name": "almalinux-8.10",
     "no_proxy": "{{env `no_proxy`}}",
     "qemu_display": "none",
-    "template": "almalinux-8.7-aarch64",
+    "template": "almalinux-8.10-aarch64",
     "boot_command": "<up><wait><tab> inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `ks_path`}}<enter><wait>",
     "version": "TIMESTAMP"
   }
