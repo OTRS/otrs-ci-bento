@@ -180,7 +180,7 @@
     "https_proxy": "{{env `https_proxy`}}",
     "hyperv_generation": "1",
     "hyperv_switch": "bento",
-    "iso_checksum": "b95ddf9d56a849cc8eb4b95dd2321c13af637d3379b91f5d96c39e96fb4403b3",
+    "iso_checksum": "463fa92155b886e31627f6713e1c2824343762245a914715ffd6f2efc300b7a1",
     "iso_name": "AlmaLinux-8.10-x86_64-dvd.iso",
     "ks_path": "8/ks.cfg",
     "memory": "1024",
