@@ -47,6 +47,7 @@ case "$PACKER_BUILDER_TYPE" in
 
     if ! modinfo vboxsf >/dev/null 2>&1; then
          echo "Cannot find vbox kernel module. Installation of guest additions unsuccessful!"
+         cat /var/log/vboxadd-setup.log 
          exit 1
     fi
 
