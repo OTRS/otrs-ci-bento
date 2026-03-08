@@ -23,13 +23,15 @@ case "$PACKER_BUILDER_TYPE" in
     # We install things like kernel-headers here vs. kickstart files so we make sure we install them for the updated kernel not the stock kernel
     if [ -f "/bin/dnf" ]; then
         dnf install -y perl cpp gcc make bzip2 tar libX11 libXt libXext libXmu \
-            elfutils-libelf-devel kernel-devel-$(uname -r) kernel-headers-$(uname -r) # not all these packages are on every system
-        DNF_EXIT=$?
-        if [ "$DNF_EXIT" -ne 0 ]; then
-            echo "dnf exited with code $DNF_EXIT — continuing anyway"
-        else
-            echo "installed deps necessary to compile kernel modules using dnf"
+            elfutils-libelf-devel kernel-devel-$(uname -r) # not all these packages are on every system
+
+        # Install kernel-headers only for EL < 9 (deprecated in EL9+)
+        MAJOR_VERSION="`sed 's/^.\+ release \([.0-9]\+\).*/\1/' /etc/redhat-release | awk -F. '{print $1}'`"
+        if [ "$MAJOR_VERSION" -lt 9 ]; then
+            dnf install -y kernel-headers-$(uname -r)
         fi
+
+        echo "installed deps necessary to compile kernel modules using dnf"
     elif [ -f "/bin/yum" ] || [ -f "/usr/bin/yum" ]; then
         yum install -y --skip-broken perl cpp gcc make bzip2 tar kernel-headers kernel-devel libX11 libXt libXext libXmu || true # not all these packages are on every system
         echo "installed deps necessary to compile kernel modules using yum"
@@ -47,7 +49,7 @@ case "$PACKER_BUILDER_TYPE" in
 
     if ! modinfo vboxsf >/dev/null 2>&1; then
          echo "Cannot find vbox kernel module. Installation of guest additions unsuccessful!"
-         cat /var/log/vboxadd-setup.log 
+         cat /var/log/vboxadd-setup.log
          exit 1
     fi
 
