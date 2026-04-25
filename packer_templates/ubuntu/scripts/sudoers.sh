@@ -10,7 +10,7 @@ if [ -n "$major_version" -a "$major_version" -lt 26 ] ; then
 else
     cat - <<EOF > /etc/sudoers.d/99_vagrant
 Defaults:%sudo !secure_path
-Defaults:%sudo env_keep += "PATH"
+Defaults:%sudo env_keep += "PATH HOME_DIR PACKER_BUILDER_TYPE"
 vagrant ALL=(ALL) NOPASSWD:ALL
 EOF
 fi
