@@ -270,7 +270,7 @@
         "hyperv_switch": "bento",
         "memory": "1024",
         "mirror": "http://releases.ubuntu.com",
-        "mirror_directory": "noble",
+        "mirror_directory": "resolute",
         "name": "ubuntu-26.04",
         "no_proxy": "{{env `no_proxy`}}",
         "preseed_path": "preseed.cfg",
