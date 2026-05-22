@@ -195,7 +195,7 @@
     "no_proxy": "{{env `no_proxy`}}",
     "qemu_display": "none",
     "template": "almalinux-10-x86_64",
-    "boot_command": "e<wait5><down><down><end> inst.text inst.noibft inst.notmux inst.geoloc=0 inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `ks_path`}}<f10>",
+    "boot_command": "e<wait5><down><down><end> inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `ks_path`}}<wait5><leftCtrlOn>x<leftCtrlOff>",
     "version": "TIMESTAMP"
   }
 }
