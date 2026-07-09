@@ -1,4 +1,4 @@
-  {
+{
   "builders": [
     {
       "boot_command": "{{ user `boot_command` }}",
@@ -64,18 +64,8 @@
       "parallels_tools_flavor": "lin",
       "prlctl_version_file": ".prlctl_version",
       "prlctl": [
-        [
-          "set",
-          "{{.Name}}",
-          "--3d-accelerate",
-          "off"
-        ],
-        [
-          "set",
-          "{{.Name}}",
-          "--videosize",
-          "16"
-        ]
+        ["set", "{{.Name}}", "--3d-accelerate", "off"],
+        ["set", "{{.Name}}", "--videosize", "16"]
       ],
       "shutdown_command": "echo 'vagrant' | sudo -S /sbin/halt -h -p",
       "ssh_password": "vagrant",
@@ -92,9 +82,7 @@
       "boot_wait": "5s",
       "cpus": "{{ user `cpus` }}",
       "disk_size": "{{user `disk_size`}}",
-      "floppy_files": [
-        "{{user `http_directory`}}/{{user `ks_path`}}"
-      ],
+      "floppy_files": ["{{user `http_directory`}}/{{user `ks_path`}}"],
       "generation": "{{user `hyperv_generation`}}",
       "guest_additions_mode": "disable",
       "http_directory": "{{user `http_directory`}}",
@@ -130,8 +118,8 @@
       "type": "qemu",
       "vm_name": "{{ user `template` }}",
       "qemuargs": [
-        [ "-m", "{{ user `memory` }}" ],
-        [ "-display", "{{ user `qemu_display` }}" ]
+        ["-m", "{{ user `memory` }}"],
+        ["-display", "{{ user `qemu_display` }}"]
       ]
     }
   ],
@@ -151,9 +139,7 @@
         "no_proxy={{user `no_proxy`}}"
       ],
       "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E sh -eux '{{.Path}}'",
-      "scripts": [
-        "{{template_dir}}/scripts/update.sh"
-      ],
+      "scripts": ["{{template_dir}}/scripts/update.sh"],
       "expect_disconnect": true
     },
     {
@@ -193,8 +179,8 @@
     "https_proxy": "{{env `https_proxy`}}",
     "hyperv_generation": "1",
     "hyperv_switch": "bento",
-    "iso_checksum": "463fa92155b886e31627f6713e1c2824343762245a914715ffd6f2efc300b7a1",
-    "iso_name": "AlmaLinux-8.10-x86_64-dvd.iso",
+    "iso_checksum": "e524329700abe47ce1f509bed7e2d3c68b336a54c712daa1b492b2429a64d419",
+    "iso_name": "AlmaLinux-8.10-x86_64-minimal.iso",
     "ks_path": "8/ks.cfg",
     "memory": "1024",
     "mirror": "https://repo.almalinux.org/almalinux",
