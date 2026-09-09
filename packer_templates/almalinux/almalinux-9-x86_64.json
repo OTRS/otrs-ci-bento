@@ -140,7 +140,8 @@
       ],
       "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E sh -eux '{{.Path}}'",
       "scripts": ["{{template_dir}}/scripts/update.sh"],
-      "expect_disconnect": true
+      "expect_disconnect": true,
+      "pause_after": "30s"
     },
     {
       "type": "shell",
