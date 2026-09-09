@@ -161,8 +161,7 @@
         "otrs.sh",
         "{{template_dir}}/scripts/cleanup.sh",
         "{{template_dir}}/../_common/minimize.sh"
-      ],
-      "expect_disconnect": true
+      ]
     }
   ],
   "variables": {

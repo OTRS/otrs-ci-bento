@@ -167,8 +167,7 @@
         "otrs.sh",
         "{{template_dir}}/scripts/cleanup.sh",
         "{{template_dir}}/../_common/minimize.sh"
-      ],
-      "expect_disconnect": true
+      ]
     }
   ],
   "variables": {
@@ -185,8 +184,8 @@
     "https_proxy": "{{env `https_proxy`}}",
     "hyperv_generation": "1",
     "hyperv_switch": "bento",
-    "iso_checksum": "4597a7483fd7b49bbb7a46958fe2574b7c575531e5ee64ad4d6c1d2779494400",
-    "iso_name": "AlmaLinux-10-latest-x86_64-dvd.iso",
+    "iso_checksum": "1b532f534231da0d1cd0ccae622bea6cd588d8a0d7b259f1f131501a6eed41a4",
+    "iso_name": "AlmaLinux-10-latest-x86_64-minimal.iso",
     "ks_path": "10/ks.cfg",
     "memory": "1024",
     "mirror": "https://repo.almalinux.org/almalinux",
